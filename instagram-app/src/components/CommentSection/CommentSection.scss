@@ -1,0 +1,14 @@
+.comment-section {
+  font-size: 0.9rem;
+
+  .comment {
+    display: flex;
+    flex-flow: row;
+    margin-bottom: 5px;
+
+    .comment-username {
+      font-weight: bold;
+      margin-right: 5px;
+    }
+  }
+}

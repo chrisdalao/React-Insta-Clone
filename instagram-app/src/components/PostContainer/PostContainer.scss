@@ -1,0 +1,46 @@
+.post-container {
+  display: flex;
+  flex-flow: column;
+  max-width: 645px;
+  margin: auto;
+
+  .post {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+
+    .post-top {
+      display: flex;
+      flex-flow: row;
+
+      .post-userimg {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        margin: auto 15px;
+      }
+
+      .post-username {
+        font-weight: bold;
+      }
+    }
+
+    .post-bottom {
+      margin: 10px 15px;
+
+      .post-actions {
+        font-size: 1.5rem;
+
+        .action-icon {
+          margin-right: 15px;
+        }
+      }
+
+      .post-likes {
+        font-weight: bold;
+        margin: 5px 0;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
