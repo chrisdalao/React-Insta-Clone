@@ -3,9 +3,6 @@ import uuid from 'uuid';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import './CommentSection.scss';
-import './AddComment.scss';
-
-// import AddComment from '../CommentSection/AddComment';
 
 const CommentSection = props => {
     return (
@@ -22,7 +19,6 @@ const CommentSection = props => {
             <form className="add-comment-form">
                 <input
                     type="text"
-                    name="comment"
                     value={props.value}
                     onChange={props.handleCommentChange}
                     placeholder="Add a comment..."

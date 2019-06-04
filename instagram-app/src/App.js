@@ -8,7 +8,6 @@ class App extends React.Component {
 
   state = {
     postData: [],
-    comment: ''
   };
 
   componentDidMount() {
@@ -17,13 +16,11 @@ class App extends React.Component {
     });
   }
 
-  changeComment = e => (this.setState({ [e.target.name]: e.target.value }));
-
   render() {
     return (
       <div className="App">
         <SearchBar />
-        <PostContainer value={this.state.comment} handleCommentChange={this.changeComment} postData={this.state.postData} />
+        <PostContainer value={this.state.comment} postData={this.state.postData} />
       </div>
     );
   }
