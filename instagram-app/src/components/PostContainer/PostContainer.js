@@ -23,7 +23,7 @@ const PostContainer = props => {
                             </div>
                             <div className="post-likes">{post.likes} likes</div>
                             <CommentSection postComments={post.comments} />
-                            <div className="post-date">{moment(post.timestamp, "LLL").fromNow().toUpperCase()}</div>
+                            <div className="post-date">{moment(post.timestamp, "LLL").fromNow().toUpperCase()} </div>
                             <AddComment />
                         </div>
                     </div>
