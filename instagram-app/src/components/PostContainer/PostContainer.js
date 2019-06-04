@@ -1,14 +1,14 @@
 import React from 'react'
 import uuid from 'uuid';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import './PostContainer.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons';
 import CommentSection from '../CommentSection/CommentSection';
 import AddComment from '../CommentSection/AddComment';
 
 const PostContainer = props => {
-    console.log(Date.now())
     return (
         <div className="post-container">
             {props.postData.map(post => {
@@ -23,7 +23,7 @@ const PostContainer = props => {
                             </div>
                             <div className="post-likes">{post.likes} likes</div>
                             <CommentSection postComments={post.comments} />
-                            <div> {post.timestamp} </div>
+                            <div className="post-date">{moment(post.timestamp, "LLL").fromNow().toUpperCase()}</div>
                             <AddComment />
                         </div>
                     </div>
