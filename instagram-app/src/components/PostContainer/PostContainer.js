@@ -1,19 +1,17 @@
 import React from 'react'
-import uuid from 'uuid';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import './PostContainer.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons';
 import CommentSection from '../CommentSection/CommentSection';
-import AddComment from '../CommentSection/AddComment';
 
 const PostContainer = props => {
+    console.log(props.value)
     return (
         <div className="post-container">
             {props.postData.map(post => {
                 return (
-                    <div className="post" key={uuid.v4()}>
+                    <div className="post" key={post.id}>
                         <div className="post-top"><img className="post-userimg" src={post.thumbnailUrl} alt="" /><p className="post-username">{post.username}</p></div>
                         <div><img src={post.imageUrl} alt="" /></div>
                         <div className="post-bottom">
@@ -22,9 +20,7 @@ const PostContainer = props => {
                                 <FontAwesomeIcon className="action-icon" icon={faComment} />
                             </div>
                             <div className="post-likes">{post.likes} likes</div>
-                            <CommentSection postComments={post.comments} />
-                            <div className="post-date">{moment(post.timestamp, "LLL").fromNow().toUpperCase()} </div>
-                            <AddComment />
+                            <CommentSection value={props.value} handleCommentChange={props.handleCommentChange} postTimeStamp={post.timestamp} postComments={post.comments} />
                         </div>
                     </div>
                 )

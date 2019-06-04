@@ -6,18 +6,24 @@ import PostContainer from './components/PostContainer/PostContainer';
 
 class App extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {
+  state = {
+    postData: [],
+    comment: ''
+  };
+
+  componentDidMount() {
+    this.setState({
       postData: dummyData
-    };
+    });
   }
+
+  changeComment = e => (this.setState({ [e.target.name]: e.target.value }));
 
   render() {
     return (
       <div className="App">
         <SearchBar />
-        <PostContainer postData={this.state.postData} />
+        <PostContainer value={this.state.comment} handleCommentChange={this.changeComment} postData={this.state.postData} />
       </div>
     );
   }
