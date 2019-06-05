@@ -23,7 +23,7 @@ class CommentSection extends React.Component {
             comments: [...this.state.comments, newComment],
             comment: ''
         })
-        console.log(this.state.comments)
+        debugger
     }
 
     changeComment = e => (this.setState({ [e.target.name]: e.target.value }));
@@ -31,7 +31,7 @@ class CommentSection extends React.Component {
     render() {
         return (
             <div className="comment-section">
-                {this.props.postComments.map(comment => {
+                {this.state.comments.map(comment => {
                     return (
                         <div className="comment" key={uuid.v4()}>
                             <div className="comment-username">{comment.username}</div>
