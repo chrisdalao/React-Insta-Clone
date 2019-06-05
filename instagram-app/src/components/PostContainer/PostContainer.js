@@ -21,7 +21,6 @@ const PostContainer = props => {
                             </div>
                             <div className="post-likes">{post.likes} likes</div>
                             <CommentSection
-                                post={post}
                                 postTimeStamp={post.timestamp}
                                 postComments={post.comments}
                             />

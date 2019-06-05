@@ -5,16 +5,28 @@ import PropTypes from 'prop-types';
 import './CommentSection.scss';
 
 class CommentSection extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            comment: ""
+    state = {
+        comments: this.props.postComments,
+        comment: ""
+    }
+    //onSubmit=addcomment - pass in post id and input value to props.addComment
+
+    //add function
+
+    addNewComment = e => {
+        e.preventDefault();
+        const newComment = {
+            username: 'chrisdalao',
+            text: this.state.comment
         }
+        this.setState({
+            comments: [...this.state.comments, newComment],
+            comment: ''
+        })
+        console.log(this.state.comments)
     }
 
     changeComment = e => (this.setState({ [e.target.name]: e.target.value }));
-
-    //onSubmit=addcomment - pass in post id and input value to props.addComment
 
     render() {
         return (
@@ -28,7 +40,7 @@ class CommentSection extends React.Component {
                     )
                 })}
                 <div className="post-date">{moment(this.props.postTimeStamp, "LLL").fromNow().toUpperCase()} </div>
-                <form className="add-comment-form">
+                <form onSubmit={this.addNewComment} className="add-comment-form">
                     <input
                         type="text"
                         name="comment"
