@@ -7,7 +7,8 @@ import PostContainer from './components/PostContainer/PostContainer';
 class App extends React.Component {
 
   state = {
-    postData: []
+    postData: [],
+    filteredPosts: []
   };
 
   componentDidMount() {
@@ -16,11 +17,16 @@ class App extends React.Component {
     });
   }
 
+  searchFilter = e => {
+    const filtered = this.state.postData.filter(post => post.username.toLowerCase().includes(e.target.value.toLowerCase()))
+    this.setState({ filteredPosts: filtered })
+  }
+
   render() {
     return (
       <div className="App">
-        <SearchBar />
-        <PostContainer postData={this.state.postData} />
+        <SearchBar searchFilter={this.searchFilter} />
+        <PostContainer filteredPosts={this.state.filteredPosts} postData={this.state.postData} />
       </div>
     );
   }

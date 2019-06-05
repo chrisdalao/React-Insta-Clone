@@ -13,7 +13,12 @@ const SearchBar = props => {
                     <img className="brand-icon-word" src="https://cdn2.downdetector.com/static/uploads/logo/Instagram_Logo_Large.png" alt="" />
                 </div>
                 <div className="search-input">
-                    <input type="text" placeholder="Search" />
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        name="search"
+                        onChange={props.searchFilter}
+                    />
                 </div>
                 <div className="search-navigation">
                     <FontAwesomeIcon className="search-icon" icon={faCompass} />
