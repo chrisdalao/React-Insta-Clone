@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.scss';
 import PostsPage from './components/PostContainer/PostsPage';
+import Login from './components/Login/Login';
 import withAuthenticate from './components/authentication/withAuthenticate';
 
 class App extends React.Component {
@@ -14,7 +15,7 @@ class App extends React.Component {
 
 }
 
-const ComponentFromWithAuthenticate = withAuthenticate(PostsPage);
+const ComponentFromWithAuthenticate = withAuthenticate(PostsPage)(Login);
 
 
 export default App;
