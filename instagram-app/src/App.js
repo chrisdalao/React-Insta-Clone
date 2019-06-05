@@ -10,6 +10,8 @@ class App extends React.Component {
     postData: [],
   };
 
+  //add function
+
   componentDidMount() {
     this.setState({
       postData: dummyData
@@ -20,7 +22,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <SearchBar />
-        <PostContainer value={this.state.comment} postData={this.state.postData} />
+        <PostContainer postData={this.state.postData} />
       </div>
     );
   }
