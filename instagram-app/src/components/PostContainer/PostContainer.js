@@ -5,32 +5,45 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons';
 import CommentSection from '../CommentSection/CommentSection';
 
-const PostContainer = props => {
+class PostContainer extends React.Component {
 
-    return (
-        <div className="post-container">
-            {props.postData.map(post => {
-                return (
-                    <div className="post" key={post.id}>
-                        <div className="post-top"><img className="post-userimg" src={post.thumbnailUrl} alt="" /><p className="post-username">{post.username}</p></div>
-                        <div><img src={post.imageUrl} alt="" /></div>
-                        <div className="post-bottom">
-                            <div className="post-actions">
-                                <FontAwesomeIcon className="action-icon" icon={faHeart} />
-                                <FontAwesomeIcon className="action-icon" icon={faComment} />
+    state = {
+        likes: null
+    }
+
+    render() {
+        return (
+            <div className="post-container">
+                {this.props.postData.map(post => {
+                    const addNewLike = e => {
+                        e.preventDefault();
+                        this.setState({
+                            likes: post.likes += 1
+                        })
+                    }
+                    return (
+                        <div className="post" key={post.id}>
+                            <div className="post-top"><img className="post-userimg" src={post.thumbnailUrl} alt="" /><p className="post-username">{post.username}</p></div>
+                            <div><img src={post.imageUrl} alt="" /></div>
+                            <div className="post-bottom">
+                                <div className="post-actions">
+                                    <FontAwesomeIcon onClick={addNewLike} className="action-icon like" icon={faHeart} />
+                                    <FontAwesomeIcon className="action-icon comment" icon={faComment} />
+                                </div>
+                                <div className="post-likes">{post.likes} likes</div>
+                                <CommentSection
+                                    postLikes={post.likes}
+                                    postTimeStamp={post.timestamp}
+                                    postComments={post.comments}
+                                />
                             </div>
-                            <div className="post-likes">{post.likes} likes</div>
-                            <CommentSection
-                                postTimeStamp={post.timestamp}
-                                postComments={post.comments}
-                            />
                         </div>
-                    </div>
-                )
-            })
-            }
-        </div >
-    )
+                    )
+                })
+                }
+            </div >
+        )
+    }
 
 }
 

@@ -9,9 +9,6 @@ class CommentSection extends React.Component {
         comments: this.props.postComments,
         comment: ""
     }
-    //onSubmit=addcomment - pass in post id and input value to props.addComment
-
-    //add function
 
     addNewComment = e => {
         e.preventDefault();
@@ -23,7 +20,6 @@ class CommentSection extends React.Component {
             comments: [...this.state.comments, newComment],
             comment: ''
         })
-        debugger
     }
 
     changeComment = e => (this.setState({ [e.target.name]: e.target.value }));
