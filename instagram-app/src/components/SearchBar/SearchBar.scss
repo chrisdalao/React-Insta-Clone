@@ -1,0 +1,48 @@
+.search-bar-container {
+  display: flex;
+  width: 100%;
+  .search-bar {
+    width: 60%;
+    margin: 20px auto;
+    font-size: 1.8rem;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+
+    .brand-icon {
+      border-right: 0.01rem solid #000000;
+      margin-left: 25px;
+      margin-bottom: 15px;
+      padding-right: 15px;
+    }
+
+    .brand-icon-word {
+      width: 115px;
+      height: auto;
+      margin-left: 15px;
+    }
+
+    .search-input {
+      width: 210px;
+
+      input {
+        width: 100%;
+        height: 25px;
+        border-radius: 5px;
+        background-color: #e6e6e6;
+        border-color: #fafafa;
+        text-align: center;
+        border: transparent;
+        font-size: 0.9rem;
+      }
+    }
+
+    .search-navigation {
+      font-size: 1.5rem;
+
+      .search-icon {
+        margin: 0px 15px;
+      }
+    }
+  }
+}

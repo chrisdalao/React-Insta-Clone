@@ -1,36 +1,73 @@
 import React from 'react'
-import uuid from 'uuid';
 import PropTypes from 'prop-types';
 import './PostContainer.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons';
 import CommentSection from '../CommentSection/CommentSection';
-import AddComment from '../CommentSection/AddComment';
 
-const PostContainer = props => {
-    console.log(Date.now())
-    return (
-        <div className="post-container">
-            {props.postData.map(post => {
-                return (
-                    <div className="post" key={uuid.v4()}>
-                        <div className="post-top"><img className="post-userimg" src={post.thumbnailUrl} alt="" /><p className="post-username">{post.username}</p></div>
-                        <div><img src={post.imageUrl} alt="" /></div>
-                        <div className="post-bottom">
-                            <div className="post-actions">
-                                <FontAwesomeIcon className="action-icon" icon={faHeart} />
-                                <FontAwesomeIcon className="action-icon" icon={faComment} />
+class PostContainer extends React.Component {
+    state = {
+        likes: null
+    }
+
+    render() {
+        return (
+            <div className="post-container">
+                {this.props.filteredPosts.length === 0 ? this.props.postData.map(post => {
+                    const addNewLike = e => {
+                        e.preventDefault();
+                        this.setState({
+                            likes: post.likes += 1
+                        })
+                    }
+                    return (
+                        <div className="post" key={post.id}>
+                            <div className="post-top"><img className="post-userimg" src={post.thumbnailUrl} alt="" /><p className="post-username">{post.username}</p></div>
+                            <div><img src={post.imageUrl} alt="" /></div>
+                            <div className="post-bottom">
+                                <div className="post-actions">
+                                    <FontAwesomeIcon onClick={addNewLike} className="action-icon like" icon={faHeart} />
+                                    <FontAwesomeIcon className="action-icon comment" icon={faComment} />
+                                </div>
+                                <div className="post-likes">{post.likes} likes</div>
+                                <CommentSection
+                                    postLikes={post.likes}
+                                    postTimeStamp={post.timestamp}
+                                    postComments={post.comments}
+                                />
                             </div>
-                            <div className="post-likes">{post.likes} likes</div>
-                            <CommentSection postComments={post.comments} />
-                            <div>{post.timestamp}</div>
-                            <AddComment />
                         </div>
-                    </div>
-                )
-            })}
-        </div>
-    )
+                    )
+                }) : this.props.filteredPosts.map(post => {
+                    const addNewLike = e => {
+                        e.preventDefault();
+                        this.setState({
+                            likes: post.likes += 1
+                        })
+                    }
+                    return (
+                        <div className="post" key={post.id}>
+                            <div className="post-top"><img className="post-userimg" src={post.thumbnailUrl} alt="" /><p className="post-username">{post.username}</p></div>
+                            <div><img src={post.imageUrl} alt="" /></div>
+                            <div className="post-bottom">
+                                <div className="post-actions">
+                                    <FontAwesomeIcon onClick={addNewLike} className="action-icon like" icon={faHeart} />
+                                    <FontAwesomeIcon className="action-icon comment" icon={faComment} />
+                                </div>
+                                <div className="post-likes">{post.likes} likes</div>
+                                <CommentSection
+                                    postLikes={post.likes}
+                                    postTimeStamp={post.timestamp}
+                                    postComments={post.comments}
+                                />
+                            </div>
+                        </div>
+                    )
+                })
+                }
+            </div >
+        )
+    }
 
 }
 
